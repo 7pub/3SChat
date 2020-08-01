@@ -12,15 +12,10 @@
 
 
 
-## ``Matchmaking function``
+## ``Matchmaking``
 
-Sometimes old IP's become different people's server. For example a
-company uses a Digitalocean VPS and after one year they switched to amazon
-so they remove their VPS instance. The IP is then released and then used by
-some dude's server for a hobby project. To verify if we got a hit, we need
-to inspect the HTML and compare it from the WAF and the direct IP and Calculate
-a match percentage. This is exactly what we are going to do here.
-This script is called later on in the script.
+Drei Secure Chat [3SC] ist für die eine Besondere Mitteilung. 
+Sie können keine Verbindung zu Ihren vorhandenen Konten wie Google Microsoft iCloud u.a. herstellen. [3SC] verzichtet bewusst auf Hochverfügbarkeit. Die Anwendung wird nicht zentral Bereitgestellt. Es gib keine Anmeldefunktion und keine Authentifizierung.  Erstellen oder für zusätzliche Sicherheit sogar eine Verbindung zu Ihrem eigenen Server herstellen.
 
 
 ### ``IP Validation``
