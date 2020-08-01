@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>3SChat [APP]</title>
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="/_site/css/3P/jQKeyboard.css">
+    <script type="text/javascript" src="/_site/js/vendor/jq/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="/_site/js/3S/3SKeyboard/jQKeyboard.js"></script>
+    <script>
+        function loadStyle(directory, files) {
+            var head = document.getElementsByTagName("head")[0]
+            var extension = '.css'
+            for (var file of files) {
+                var path = directory + file + extension
+                var link = document.createElement("link")
+                link.href = path
+                link.type = "text/css"
+                link.rel = "stylesheet"
+                head.appendChild(link)
+            }
+        }
+        (() => loadStyle('/_site/css/vendor/bs/',  /***/ ['bootstrap-4.0.0.min']))();
+        (() => loadStyle('/_site/css/vendor/nd2/', /***/ ['material', 'waves-0.7.2.min', 'wow-1.1.2.animate', 'nativeDroid2']))();
+        (() => loadStyle('/_site/css/3S/Chat/',    /***/ ['main', 'ticker']))();
+        (() => loadStyle('/_site/css/vendor/fa/',  /***/ ['all']))();
+        (() => loadStyle('/_site/css/3P/Keyboard/',/***/ ['import']))();
+        //https://7pub.github.io/_site/css/3P/Keyboard/import.css
+        (() => loadStyle('/_site/css/vendor/jq/',  /***/ ['jquery-1.4.5.mobile.min']))();
+    </script>
+    <script type="text/javascript" src="/_site/js/vendor/jq/jquery-3.3.1.min.js"></script>
+</head>
+
+<body class="nd2-ready">
+    <div class="mdc-typography">
+        <form class="new-message">
+            <section class="main-content mdc-typography mdc-elevation--z8"></section>
+            <main class="container">
+                <div class="main-content mdc-typography mdc-elevation--z8">
+                    <!--banner-->
+                    <article name="banner" class="main-content mdc-typography mdc-elevation--z8 pt-2 pb-2">
+                        <header class="lead">
+                            <ul class="nav justify-content-start">
+                                <li class="nav-item">&nbsp;<a href="/">&nbsp;[ 3SChat</a> ]&nbsp;</li>
+                                <li class="nav-item">&nbsp;<small class="text-muted"><u>3chnell</u>, </small></li>
+                                <li class="nav-item">&nbsp;<small class="text-muted"><u>3icher</u>, </small></li>
+                                <li class="nav-item">&nbsp;<small class="text-muted"><u>3erverlos</u>. </small></li>
+                            </ul>
+                        </header>
+                    </article>
+                    <!--settings-->
+                    <article name="settings" id="encStg" class="collapse main-content mdc-typography">
+                        <div class="content btn-group pt-1" aria-expanded="true" aria-labelledby="aria-encStg" data-parent="#encStg" name="encStg">
+                            <section class="content">
+                                <div class="mdc-text-field mdc-text-field--outlined" data-mdc-auto-init="MDCTextField">
+                                    <input id="seshKeyElement" class="sender-input collapse mdc-text-field__input" type="text" value="" name="sender" />
+                                    <div class="mdc-notched-outline">
+                                        <div class="mdc-notched-outline__leading"></div>
+                                        <div class="mdc-notched-outline__notch">
+                                            <label for="tf-outlined-one" class="mdc-floating-label">
+                                            <i class="fa fa-home"></i>TX/RX - Identity</label>
+                                        </div>
+                                        <div class="mdc-notched-outline__trailing"></div>
+                                    </div>
+                                    <script>
+                                        console.log('Session Key:' + seshKey(3))
+
+                                        function seshKey(len) {
+                                            var randomNumber;
+                                            var n = '';
+                                            for (var count = 0; count < len; count++) {
+                                                randomNumber = Math.floor(Math.random() * 10);
+                                                n += randomNumber.toString();
+                                            }
+                                            return n;
+                                        }
+                                        document.getElementById("seshKeyElement").value = seshKey(3);
+                                    </script>
+                                </div>
+                            </section>
+                            <section class="content">
+                                <div class="mdc-text-field mdc-text-field--outlined encrypt--password" data-mdc-auto-init="MDCTextField">
+                                    <input id="encToken" class="mdc-text-field__input" type="text" value="" autocomplete="off" />
+                                    <div class="mdc-notched-outline">
+                                        <div class="mdc-notched-outline__leading"></div>
+                                        <div class="mdc-notched-outline__notch">
+                                            <label for="tf-outlined-one" class="mdc-floating-label">
+                                            <i class="fa fa-key"></i>
+                                            Personal Passkey
+                                            </label>
+                                        </div>
+                                        <div class="mdc-notched-outline__trailing"></div>
+                                    </div>
+                                    <script>
+                                        function randomNumber(m, n) {
+                                            m = parseInt(m);
+                                            n = parseInt(n);
+                                            personalPassKey = Math.floor(Math.random() * (n - m + 1)) + m;
+                                        }
+                                        randomNumber(00000, 99999);
+                                        console.log('Personal Token:' + personalPassKey);
+                                        document.getElementById("encToken").value = personalPassKey;
+                                    </script>
+                                </div>
+                            </section>
+                            <section class="content">
+                                <div class="mdc-select mdc-select--outlined encrypt--strategy" data-mdc-auto-init="MDCSelect">
+                                    <input type="hidden" name="enhanced-select" />
+                                    <i class="mdc-select__dropdown-icon"></i>
+                                    <div id="demo-selected-text" class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="demo-label demo-selected-text">
+                                    </div>
+                                    <div class="encrypt--strategy-helper mdc-select__menu mdc-menu mdc-menu-surface" role="listbox">
+                                        <ul class="mdc-list">
+                                            <li class="mdc-list-item mdc-list-item--selected" data-value="aes" role="option" data-mdc-auto-init="MDCRipple">AES</li>
+                                            <li class="mdc-list-item" data-value="des" aria-selected="true" role="option" data-mdc-auto-init="MDCRipple">DES</li>
+                                            <li class="mdc-list-item" data-value="rc4" role="option" data-mdc-auto-init="MDCRipple">RC4</li>
+                                            <li class="mdc-list-item" data-value="rc4drop" role="option" data-mdc-auto-init="MDCRipple">RC4Drop</li>
+                                            <li class="mdc-list-item" data-value="rabbit" role="option" data-mdc-auto-init="MDCRipple">Rabbit</li>
+                                            <li class="mdc-list-item" data-value="rabbitlegacy" role="option" data-mdc-auto-init="MDCRipple">RabbitLegacy</li>
+                                            <li class="mdc-list-item" data-value="tripledes" role="option" data-mdc-auto-init="MDCRipple">TripleDES</li>
+                                        </ul>
+                                    </div>
+                                    <div class="mdc-notched-outline">
+                                        <div class="mdc-notched-outline__leading"></div>
+                                        <div class="mdc-notched-outline__notch">
+                                            <label class="mdc-floating-label">
+                                            <i class="fa fa-superscript"></i>
+                                            Select your Level
+                                        </label>
+                                        </div>
+                                        <div class="mdc-notched-outline__trailing"></div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </article>
+                    <!--devider-->
+                    <section class="main-content mdc-typography mdc-elevation--z8"></section>
+                    <!--main frame-->
+                    <article name="main frame" class="main-content mdc-typography">
+                        <div class="row h-100 justify-content-center align-items-center">
+                            <div class="container mdc-typography main-content ">
+                                <div class="messages mdc-typography main-content">
+                                    <div class="template" style="display: none">
+                                        <div class="message-another">
+                                            <span class="sender"></span>
+                                            <p class="content">{{sender}}:&nbsp;<a href="#">{{content}}</a></p>
+                                        </div>
+                                        <div class="message-self">
+                                            <span style="display: none;" class="sender"></span>
+                                            <p class="content">{{sender}}:&nbsp;{{content}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <!---->
+                    <article class="main-content mdc-typography mdc-elevation--z8">
+                        <div class="row h-100 justify-content-center align-items-center">
+                            <div id="txtEncDiv" class="container collapse pt-2" aria-expanded="true" aria-labelledby="aria-encryptStrategy" data-parent="#txtEncDiv" name="txtEncDiv">
+                                <div class="mdc-text-field mdc-text-field--textarea mdc-text-field--fullwidth encrypt--cipher" data-mdc-auto-init="MDCTextField">
+                                    <div class="btn-group-vertical"></div>
+                                    <input id="txtEnc" placeholder="warte auf Eingabe..." class="mdc-text-field__input" value="" name="content" autocomplete="off" onkeypress="return false;" />
+                                    <div class="mdc-notched-outline">
+                                        <div class="mdc-notched-outline__leading"></div>
+                                        <div class="mdc-notched-outline__notch">
+                                            <label for="Crypto" class="mdc-floating-label lead"></label>
+                                        </div>
+                                        <div class="mdc-notched-outline__trailing"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="txtInputDiv" name="Eingabefeld" class="container pt-2 pb-2" aria-expanded="true" aria-labelledby="aria-encryptStrategy" data-parent="#txtInputDiv" name="txtInputDiv">                       
+                                <div class="mdc-text-field mdc-text-field--textarea mdc-text-field--fullwidth encrypt--text" data-mdc-auto-init="MDCTextField">
+                                    <textarea id="txtInput" placeholder="schreiben..." class="txtIn-input content-input mdc-text-field__input" onkeydown="if(event.keyCode==13){return false;}"></textarea>
+                                    <div class="mdc-notched-outline">
+                                        <div class="mdc-notched-outline__leading"></div>
+                                        <div class="mdc-notched-outline__notch">
+                                            <label for="MessageBox" class="mdc-floating-label">Gib hier deine Nachricht ein</label>
+                                        </div>
+                                        <div class="mdc-notched-outline__trailing"></div>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="send-btn btn btn-outline-secondary" type="submit" name="send" onclick="cleartxtIn()">
+                                            <i style="color:green; font-size: 1.6rem;" class="fa fa-envelope"></i>
+                                        </button>
+                                        <div class="btn-group-vertical">
+                                            <!--a class="btn" onclick="cleartxtIn()">
+                                                <i style="color:red; font-size: 1.2rem;" class="fa fa-backspace"></i>
+                                            </a-->
+                                            <!--button class="send-btn btn btn-outline-secondary" type="submit" name="send" onclick="cleartxtIn()">
+                                                <i style="color:green; font-size: 1.6rem;" class="fa fa-envelope"></i>
+                                            </button-->
+                                            <a id="aria-encStg" type="button" class="btn-link collapsed btn btn-default btn-sm" 
+                                               aria-controls="encStg" data-target="#encStg" 
+                                               aria-expanded="false" data-toggle="collapse">
+                                               <i style="color:gray; font-size: 1.4rem;" class="fa fa-sliders-h"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="console" class="collapse" data-parent="#console" name="console">
+                            <fieldset id="console-log-div"></fieldset>
+                        </div>
+                    </article>
+                    <!--article name="banner" class="main-content mdc-typography mdc-elevation--z8">
+                        <ul class="nav justify-content-center">
+                            <li id="aria-" class="nav-item">
+                                <ul class="nav justify-content-center">
+                                    <li class="nav-item">
+                                        <a  id="aria-encStg" 
+                                            aria-controls="encStg" 
+                                            data-target="#encStg" 
+                                            aria-expanded="false" 
+                                            type="button" 
+                                            class="btn-link collapsed btn btn-default btn-sm" 
+                                            data-toggle="collapse"
+                                            >[Configuration]
+                                        </a>
+                                    </li>
+                                    <li class="nav-item"><a id="aria-txtEncDiv" aria-controls="txtEncDiv" data-target="#txtEncDiv" aria-expanded="false" type="button" class="btn-link collapsed btn btn-default btn-sm" data-toggle="collapse">[Crypto Output]</a></li>
+                                    <li class="nav-item"><a id="aria-txtInputDiv" aria-controls="txtInputDiv" data-target="#txtInputDiv" aria-expanded="false" type="button" class="btn-link collapsed btn btn-default btn-sm" data-toggle="collapse">[Text Input]</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </article-->
+                </div>
+            </main>
+            <article class="main-content">
+                <ul class="nav justify-content-center">
+                    <li id="aria-" class="nav-item">
+                        <ul class="nav justify-content-center">
+                            <li class="nav-item">
+                                <a  id="aria-encStg" 
+                                    aria-controls="encStg" 
+                                    data-target="#encStg" 
+                                    aria-expanded="false" 
+                                    type="button" 
+                                    class="btn-link collapsed btn btn-default btn-sm" 
+                                    data-toggle="collapse"
+                                    >[Configuration]
+                                </a>
+                            </li>
+                            <li class="nav-item"><a id="aria-txtEncDiv" aria-controls="txtEncDiv" data-target="#txtEncDiv" aria-expanded="false" type="button" class="btn-link collapsed btn btn-default btn-sm" data-toggle="collapse">[Crypto Output]</a></li>
+                            <li class="nav-item"><a id="aria-txtInputDiv" aria-controls="txtInputDiv" data-target="#txtInputDiv" aria-expanded="false" type="button" class="btn-link collapsed btn btn-default btn-sm" data-toggle="collapse">[Text Input]</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </article>
+            <!--header class="lead">
+                    <ul class="nav justify-content-end">
+                        <li class="nav-item"><a id="aria-settings" aria-controls="settings" data-target="#" aria-expanded="false" type="button" class="btn-link collapsed btn btn-default btn-sm" data-toggle="collapse">Copyright</a></li>
+                        <li class="nav-item"><a id="aria-monitor" aria-controls="monitor" data-target="#" aria-expanded="false" type="button" class="btn-link collapsed btn btn-default btn-sm" data-toggle="collapse">Cali.run</a></li>
+                        <li class="nav-item"><a id="aria-console" aria-controls="console" data-target="#" aria-expanded="false" type="button" class="btn-link collapsed btn btn-default btn-sm" data-toggle="collapse">Cassandra</a></li>
+                    </ul>
+                </header-->
+        </form>
+        <!--div class="main-content mdc-typography mdc-elevation--z8"></div-->
+    </div>
+<!-- Vendor Library -->
+    <script type="text/javascript" src="/_site/js/vendor/jq/jquery-1.11.4.ui.min.js"></script>
+    <script type="text/javascript" src="/_site/js/vendor/bs/bootstrap-4.0.0.min.js"></script>
+<!--script type="text/javascript" src="https://raw.githubusercontent.com/7pub/_site/master/js/vendor/jq/jquery-3.3.1.min.js"></script-->
+<!--script type="text/javascript" src="https://raw.githubusercontent.com/7pub/_site/master/js/vendor/jq/jquery-1.11.4.ui.min.js"></script-->
+<!--script type="text/javascript" src="https://raw.githubusercontent.com/7pub/_site/master/js/vendor/bs/bootstrap-4.0.0.min.js"></script-->
+<!--Root-->
+    <script type="text/javascript" src="/_site/js/vendor/nd2/nativeDroid2.js"></script>
+    <script type="text/javascript" src="/_site/js/vendor/nd2/nd2settings.js"></script>
+<!--script type="text/javascript" src="https://raw.githubusercontent.com/7pub/_site/master/js/vendor/nd2/nativeDroid2.js"></script-->
+<!--script type="text/javascript" src="https://raw.githubusercontent.com/7pub/_site/master/js/vendor/nd2/nd2settings.js"></script-->
+<!-- Caliweb -->
+    <script type="text/javascript" src="/_site/js/Caliweb/3SChat/client.js"></script>
+    <script type="text/javascript" src="/_site/js/Caliweb/3SChat/crypto-js-4.0.0.min.js"></script>
+    <script type="text/javascript" src="/_site/js/vendor/nd2/material-components-web.min.js"></script>
+    <script type="text/javascript" src="/_site/js/vendor/nd2/waves-0.7.2.min.js"></script>
+    <script type="text/javascript" src="/_site/js/vendor/nd2/wow-1.1.2.min.js"></script>
+
+<!-- Helpers [html5Shiv 373 printshiv]-->
+    <script type="text/javascript" src="/_site/js/vendor/helpers/html5Shiv.3.7.3/Printshiv.min.js" async></script>
+
+<!-- 3Party [consol-log-div]-->
+    <script type="text/javascript" src="/_site/js/3P/console.log/es5-shim.js"></script>
+    <script type="text/javascript" src="/_site/js/3P/console.log/div.js"></script>
+
+    <script>
+        function x13(x) {if (x.keyCode == 13) return false;}
+        function cleartxtEnc() {document.getElementById('txtEnc').value = "";}
+        function cleartxtIn() {document.getElementById('txtInput').value = "";}
+    </script>
+
+    <!-- 3Party [jqkeyboard]-->
+    <!--script src="/_site/js/3P/Keyboard/jqkeyboard.js"></script-->
+    <!--script src="/_site/js/3P/Keyboard/jqkeyboard-min.js"></script-->
+    <!--script src="/_site/js/3P/Keyboard/jqkeyboard-white.js"></script-->
+    <!--script src="/_site/js/3P/Keyboard/jqk.layout.en-bg.js"></script-->
+    <!--script src="/_site/js/3P/Keyboard/jqk.layout.en.js"></script-->
+
+<!--
+    <script type="text/javascript">
+        $(function() {
+            'use strict';
+            jqKeyboard.init({
+                //containment: "#test-cont",
+                //allowed: ["input"],
+                icon: 'dark'
+            }); //jqKeyboard.init({});
+        });
+    </script>
+-->
+
+<!--
+    <script type="text/javascript">
+        $(function() {
+            var keyboard = {
+                'layout': [
+                    [
+                        [
+                            ['`', '`', 192, 0, true],
+                            ['1', '1', 49, 0, false],
+                            ['2', '2', 50, 0, false],
+                            ['3', '3', 51, 0, false],
+                            ['4', '4', 52, 0, false],
+                            ['5', '5', 53, 0, false],
+                            ['6', '6', 54, 0, false],
+                            ['7', '7', 55, 0, false],
+                            ['8', '8', 56, 0, false],
+                            ['9', '9', 57, 0, false],
+                            ['0', '0', 48, 0, false],
+                            ['-', '-', 189, 0, false],
+                            ['=', '=', 187, 0, false],
+                            ['q', 'q', 81, 0, true],
+                            ['w', 'w', 87, 0, false],
+                            ['e', 'e', 69, 0, false],
+                            ['r', 'r', 82, 0, false],
+                            ['t', 't', 84, 0, false],
+                            ['y', 'y', 89, 0, false],
+                            ['u', 'u', 85, 0, false],
+                            ['i', 'i', 73, 0, false],
+                            ['o', 'o', 79, 0, false],
+                            ['p', 'p', 80, 0, false],
+                            ['[', '[', 219, 0, false],
+                            [']', ']', 221, 0, false],
+                            ['&#92;', '\\', 220, 0, false],
+                            ['a', 'a', 65, 0, true],
+                            ['s', 's', 83, 0, false],
+                            ['d', 'd', 68, 0, false],
+                            ['f', 'f', 70, 0, false],
+                            ['g', 'g', 71, 0, false],
+                            ['h', 'h', 72, 0, false],
+                            ['j', 'j', 74, 0, false],
+                            ['k', 'k', 75, 0, false],
+                            ['l', 'l', 76, 0, false],
+                            [';', ';', 186, 0, false],
+                            ['&#39;', '\'', 222, 0, false],
+                            ['Enter', '13', 13, 3, false],
+                            ['Shift', '16', 16, 2, true],
+                            ['z', 'z', 90, 0, false],
+                            ['x', 'x', 88, 0, false],
+                            ['c', 'c', 67, 0, false],
+                            ['v', 'v', 86, 0, false],
+                            ['b', 'b', 66, 0, false],
+                            ['n', 'n', 78, 0, false],
+                            ['m', 'm', 77, 0, false],
+                            [',', ',', 188, 0, false],
+                            ['.', '.', 190, 0, false],
+                            ['/', '/', 191, 0, false],
+                            ['Shift', '16', 16, 2, false],
+                            ['Bksp', '8', 8, 3, true],
+                            ['Space', '32', 32, 12, false],
+                            ['Clear', '46', 46, 3, false],
+                            ['Cancel', '27', 27, 3, false]
+                        ]
+                    ]
+                ]
+            }
+            $('input.jQKeyboard').initKeypad({
+                'keyboardLayout': keyboard
+            });
+        });
+    </script>
+-->
+    
+    <script>
+        mdc.autoInit();
+        var strategy = "aes";
+
+        function encrypt(text, password) {
+            switch (strategy) {
+                case "aes":
+                    return CryptoJS.AES.encrypt(text, password);
+                case "des":
+                    return CryptoJS.DES.encrypt(text, password);
+                case "rc4":
+                    return CryptoJS.RC4.encrypt(text, password);
+                case "rc4drop":
+                    return CryptoJS.RC4Drop.encrypt(text, password);
+                case "rabbit":
+                    return CryptoJS.Rabbit.encrypt(text, password);
+                case "rabbitlegacy":
+                    return CryptoJS.RabbitLegacy.encrypt(text, password);
+                case "tripledes":
+                    return CryptoJS.TripleDES.encrypt(text, password);
+            }
+        }
+
+        function decrypt(cipher, password) {
+            switch (strategy) {
+                case "aes":
+                    return CryptoJS.AES.decrypt(cipher, password).toString(
+                        CryptoJS.enc.Utf8
+                    );
+                case "des":
+                    return CryptoJS.DES.decrypt(cipher, password).toString(
+                        CryptoJS.enc.Utf8
+                    );
+                case "rc4":
+                    return CryptoJS.RC4.decrypt(cipher, password).toString(
+                        CryptoJS.enc.Utf8
+                    );
+                case "rc4drop":
+                    return CryptoJS.RC4Drop.decrypt(cipher, password).toString(
+                        CryptoJS.enc.Utf8
+                    );
+                case "rabbit":
+                    return CryptoJS.Rabbit.decrypt(cipher, password).toString(
+                        CryptoJS.enc.Utf8
+                    );
+                case "rabbitlegacy":
+                    return CryptoJS.RabbitLegacy.decrypt(cipher, password).toString(
+                        CryptoJS.enc.Utf8
+                    );
+                case "tripledes":
+                    return CryptoJS.TripleDES.decrypt(cipher, password).toString(
+                        CryptoJS.enc.Utf8
+                    );
+            }
+        }
+        $(".encrypt--strategy").get(0)
+            .MDCSelect.listen("MDCSelect:change", function() {
+                strategy = $(".encrypt--strategy").get(0).MDCSelect.value;
+                $(".encrypt--cipher").get(0).MDCTextField.value = encrypt(
+                    $(".encrypt--text").get(0).MDCTextField.value,
+                    $(".encrypt--password").get(0).MDCTextField.value
+                );
+            });
+        $(".encrypt--text textarea").on("input", function() {
+            $(".encrypt--cipher").get(0).MDCTextField.value = encrypt(
+                $(".encrypt--text").get(0).MDCTextField.value,
+                $(".encrypt--password").get(0).MDCTextField.value
+            );
+        });
+        $(".encrypt--password input").on("input", function() {
+            $(".encrypt--cipher").get(0).MDCTextField.value = encrypt(
+                $(".encrypt--text").get(0).MDCTextField.value,
+                $(".encrypt--password").get(0).MDCTextField.value
+            );
+        });
+        $(".encrypt--cipher textarea").on("input", function() {
+            $(".encrypt--text").get(0).MDCTextField.value = decrypt(
+                $(".encrypt--cipher").get(0).MDCTextField.value,
+                $(".encrypt--password").get(0).MDCTextField.value
+            );
+        });
+    </script>
+
+</body>
+</html>
