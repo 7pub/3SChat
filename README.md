@@ -1,22 +1,16 @@
-# 3SChat
+```Stop Font
 
-
-
-```logo
-
--------------------------------------------------------------
- __          __     ______   _
- \ \        / /\   |  ____| | |
-  \ \  /\  / /  \  | |__    | |__  _   _ _ __   __ _ ___ ___
-   \ \/  \/ / /\ \ |  __|   | '_ \| | | | '_ \ / _` / __/ __|
-    \  /\  / ____ \| |      | |_) | |_| | |_) | (_| \__ \__ \
-     \/  \/_/    \_\_|      |_.__/ \__, | .__/ \__,_|___/___/
-                                    __/ | |
-                                   |___/|_|
-
--------------------------------------------------------------
+ ________  _     ______ _                
+(_______/ | |   / _____) |          _    
+   ____    \ \ | /     | | _   ____| |_  
+  (___ \    \ \| |     | || \ / _  |  _) 
+ _____) )____) ) \_____| | | ( ( | | |__ 
+(______(______/ \______)_| |_|\_||_|\___)
+                                         
 
 ```
+
+
 
 ## ``Matchmaking function``
 
@@ -39,81 +33,17 @@ a public WAF service.
 
 ## Subdomains can point to origin IP's behind the firewall (WAF)
 
-## ``Get IP's from subdomains``
+---
 
 
-### ``Bypass Test``
+## 📄 License
 
-## For each IP test the bypass and calculate the match %
+| DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE |
+---
+| MACHEN DAMIT WAS VERDAMMT NOCHMAL DU AUCH IMMER MIT DIESER ÖFFENTLICHE LIZENZ MACHEN WILST |
 
-```bash
-echo -e "${YELLOW}[-] Launching requests to origin servers...${NC}"
-if [[ $checkall -eq 0 ]];then
-  for ip in $list_ips;do
-    if [[ $(ip_is_waf $ip) -eq 0 ]];then
-      # Remove current IP's via nslookup
-      currentips=$(nslookup $domain | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}')
-      protocol="https"
-      (if (curl --fail --max-time 10 --silent -k "$protocol://$domain" --resolve "$domain:443:$ip" | grep "html" | grep -q -v "was rejected" );then if [[ $currentips != *"$ip"* ]];then curl --silent -o "/tmp/waf-bypass-$protocol-$ip-$domain" -k -H "Host: $domain" "$protocol"://"$ip"/ ; matchmaking "/tmp/waf-bypass-$protocol-$domain" "/tmp/waf-bypass-$protocol-$ip-$domain" "$ip" "$checkall" "$domain" "$protocol";wait; fi; fi) & pid=$!;
-      PID_LIST+=" $pid";
-      protocol="http"
-      (if (curl --fail --max-time 10 --silent -k "$protocol://$domain" --resolve "$domain:80:$ip" | grep "html" | grep -q -v "was rejected" );then if [[ $currentips != *"$ip"* ]];then curl --silent -o "/tmp/waf-bypass-$protocol-$ip-$domain" -k -H "Host: $domain" "$protocol"://"$ip"/ ; matchmaking "/tmp/waf-bypass-$protocol-$domain" "/tmp/waf-bypass-$protocol-$ip-$domain" "$ip" "$checkall" "$domain" "$protocol";wait; fi; fi) & pid=$!;
-      PID_LIST+=" $pid";
-    fi
-  done
-else
-for domainitem in "${domainlist[@]}";do
-  tempstorage=$domain
-  domain=$domainitem
-  for ip in $list_ips;do
-    if [[ $(ip_is_waf $ip) -eq 0 ]];then
-      # Remove current IP's via nslookup
-      currentips=$(nslookup $domain | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}')
-      protocol="https"
-      (if (curl --fail --max-time 10 --silent -k "$protocol://$domain" --resolve "$domain:443:$ip" | grep "html" | grep -q -v "was rejected" );then if [[ $currentips != *"$ip"* ]];then curl --silent -o "/tmp/waf-bypass-$protocol-$ip-$domain" -k -H "Host: $domain" "$protocol"://"$ip"/ ; matchmaking "/tmp/waf-bypass-$protocol-$domain" "/tmp/waf-bypass-$protocol-$ip-$domain" "$ip" "$checkall" "$domain" "$protocol";wait; fi; fi) & pid=$!;
-      PID_LIST+=" $pid";
-      protocol="http"
-      (if (curl --fail --max-time 10 --silent -k "$protocol://$domain" --resolve "$domain:80:$ip" | grep "html" | grep -q -v "was rejected" );then if [[ $currentips != *"$ip"* ]];then curl --silent -o "/tmp/waf-bypass-$protocol-$ip-$domain" -k -H "Host: $domain" "$protocol"://"$ip"/ ; matchmaking "/tmp/waf-bypass-$protocol-$domain" "/tmp/waf-bypass-$protocol-$ip-$domain" "$ip" "$checkall" "$domain" "$protocol";wait; fi; fi) & pid=$!;
-      PID_LIST+=" $pid";
-    fi
-  done
-  domain=$tempstorage
-done
-fi
-echo -e "${YELLOW}[-] Waiting on replies from origin servers...${NC}"
-trap "kill $PID_LIST" SIGINT
-wait $PID_LIST
-if [ ! -f "$outfile" ]; then
-  echo -e "${RED}[-] No Bypass found!${NC}"
-else
-  echo -e "${GREEN}[+] Bypass found!${NC}"
-  sort -u -o "$outfile" "$outfile"
-  if [[ $checkall -eq 0 ]];then
-    echo -e "[IP] | [Confidence] | [Organisation]" >>  /tmp/waf-bypass-output-$domain-2.txt
-  else
-    echo -e "[Domain] | [IP] | [Confidence] | [Organisation]" >>  /tmp/waf-bypass-output-$domain-2.txt
-  fi
-  cat /tmp/waf-bypass-output-$domain.txt | sort -ur >> /tmp/waf-bypass-output-$domain-2.txt
-  cat /tmp/waf-bypass-output-$domain-2.txt > /tmp/waf-bypass-output-$domain.txt
-fi
-```
-
-### ``Presenting output + cleanup``
-
-## When checkall is enabled, merge all results to main file
-
-```bash
-for domainitem in "${domainlist[@]}"
-do
-  if [ "$domainitem" != "$domain" ];then
-    touch "/tmp/waf-bypass-output-$domainitem.txt"
-    cat "/tmp/waf-bypass-output-$domainitem.txt" >> "/tmp/waf-bypass-output-$domain.txt"
-  fi
-done
-
-touch /tmp/waf-bypass-output-$domain.txt # If no IP's were found, the script will be empty.
-cat "/tmp/waf-bypass-output-$domain.txt" | column -s"|" -t
-
-# Cleanup temp files
-rm /tmp/waf-bypass-*$domain*
-```
+| | Version.02  |
+|- | -|
+| Copyright (C) 2019 Karl Achleitner theorem.system@protonmail.com |![Crown](https://7pub.github.io/_site/license/WTFPL/wtfpl-badge-4.png) |
+  > Weitere Informationen finden Sie unter [http://unlicense.org](http://unlicense.org)
+  ---
