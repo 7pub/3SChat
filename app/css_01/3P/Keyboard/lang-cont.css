@@ -1,0 +1,52 @@
+#jqk-lang-cont { 
+    margin-bottom: 10px;
+    overflow: hidden;
+    }
+
+#jqk-lang-cont 
+    > button.jqk-lang-btn
+        :first-of-type {
+            border-top-left-radius: 3px;
+            border-bottom-left-radius:3px;
+            }
+        :last-child {
+            border-top-right-radius: 3px; 
+            border-bottom-right-radius: 3px;
+            }
+        :only-child { 
+            border-radius: 3px
+            }
+
+#jqk-lang-cont > 
+    .minimize-btn {
+        width: 18px; 
+        height: 18px; 
+        float: right; 
+        transition:.3s ease;
+        cursor:pointer; 
+        background-image: 
+            url(_site/svg/jqk-lang-cont_.minimize-btn.svg)
+            no-repeat
+        }
+
+#jqk-lang-cont button.jqk-lang-btn {
+    background: #EEE; 
+    font-size: 10px; 
+    border: none; 
+    margin-left: 0; 
+    color: #666;:pointer
+    }
+
+#jqk-lang-cont button.jqk-lang-btn
+    :hover { 
+        color:#222;
+        }
+
+#jqk-lang-cont button.jqk-lang-btn.selected {
+    background:#1c94c4;
+    color:#FFF;
+    }
+    
+.jqk-hide {
+    display:none 
+    }

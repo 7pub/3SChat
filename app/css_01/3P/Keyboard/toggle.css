@@ -1,0 +1,17 @@
+#jqk-toggle-btn {
+    position: fixed; 
+    width: 34px; height: 18px; 
+    bottom: 20px; 
+    right: 20px; 
+    cursor: pointer; 
+    opacity: .3; 
+    transition: .3s ease;
+    }
+#jqk-toggle-btn:hover { 
+        right: 27px; 
+        opacity: .8
+        }
+    
+.jqk-hide {
+    display:none 
+    }

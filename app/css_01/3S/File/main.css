@@ -1,0 +1,6 @@
+h2.title { font-weight: bold; }
+h2 a, h2 a :hover { color: #000; }
+.custom-file-input { cursor: pointer; }
+#file-placeholder { overflow: hidden; white-space: nowrap; word-wrap: break-word; text-align: left; }
+.footer { position: absolute; bottom: 0; width: 100%; }
+.jumbotron {}

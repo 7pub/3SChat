@@ -1,0 +1,53 @@
+.message-another * {
+    /** background: #1d1d2b77;*/
+    border: 1px solid;
+    display: flex;
+    align-items: center;
+}
+.message-self * {
+    background: #CADDFF;
+    border: 1px solid;
+    display: flex;
+    align-items: center;
+}
+.messages {
+    width: 100%;
+    font-size: 20px;
+    height: 315px;
+    overflow: scroll;
+}
+.messages,
+.message-another,
+.message-self {
+    margin: 0px 0px 0px 0px;
+}
+.messages::-webkit-scrollbar {
+    display: none;
+}
+.messages {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+/*
+ * html, body{margin: 0;padding: 0;font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;}        
+ * span.sender{color: white;padding: 6px;border-radius: 2px;margin: 0;}                                    
+ * p.content{margin: 0;padding: 8px;border-radius: 4px;}                                                   
+ * .container{width: 500px;margin: 20px auto;}                                                             
+ * .messages{font-size: 20px;height: 280px;overflow: scroll;}                                              
+ * .messages .message-another, .message-self{margin: 10px 0;}                                              
+ * .message-another *{background: orange;}                                                                 
+ * .message-self *{background: #2EB5E7;}                                                                   
+ * .input-container{position: absolute;bottom: 0;height: 300px;}                                           
+ * .input-container .new-message{width: 500px;height: 160px;margin: 20px auto;}                            
+ * .sender-input, .content-input, .send-btn{margin: 5px;}                                                  
+ * .sender-input{width: 100px;height: 30px;text-align: center;}                                            
+ * .content-input{width: 300px;height: 100px;text-align: left;}                                            
+ * .send-btn{width: 80px;height: 30px;border-radius: 3px;background: #2EB5E7;font-size: 15px;border: none;}
+ * 
+ * html .messages{width:100%;font-size: 20px;height: 380px; overflow: scroll;}
+ * html .messages .message-another, .message-self{margin: 0px 0px 0px 0px}
+ * html .message-another *{background: orange;border:1px solid;}
+ * html .message-self *{background: #2EB5E7;border:1px solid;}
+ * html .send-btn{width: 80px;height: 30px;border-radius: 3px;background: #2EB5E7;font-size: 15px;border: none;}
+ * 
+ */

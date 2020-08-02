@@ -1,0 +1,35 @@
+/** CALIWEB 2.0 - Keyboard
+*   
+*   - Include the line below in the <head> area of your html file.
+*       <link rel="stylesheet" type="text/css" href="{PATH_TO_YOUR_FOLDER}/noneVisible.css" />
+*
+*   - Or insert the the code below in your main stylesheet document.
+*/
+
+#jq-keyboard {
+    position: absolute;
+    background: #000;
+    width: auto;
+    max-height: 0;
+    bottom: 20px;
+    right: 20px;
+    box-shadow: 0 2px 7px 0 rgba(0,0,0,.5);
+    border-radius: 3px;
+    border-bottom: 0 solid #CCC;
+    padding-left: 10px;
+    padding-right: 10px;
+    overflow: hidden;
+    transition: max-height .5s ease, padding .3s linear
+    }
+#jq-keyboard.show {
+    padding-top: 10px;
+    padding-bottom: 5px;
+    border-bottom-width: 3px;
+    max-height: 500px;
+    }
+#jq-keyboard .btn-row {
+    text-align: center;
+    margin-bottom:5px;
+    height:35px
+    }
+    

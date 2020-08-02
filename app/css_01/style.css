@@ -1,0 +1,10 @@
+
+html { position: relative; min-height: 100%; }
+body { margin-bottom: 60px; }
+p.lead {font-family: 'Raleway', sans-serif;}
+
+.clear-btn,
+.slide-btn {width: 120px;height: 35px;border-radius: 3px;background: #72e26e;font-size: 15px;border: none;}
+.send-btn,
+.del-btn {width: 120px;height: 100%;border-radius: 3px;background: #CADDFF;font-size: 15px;border: none;padding: 0px;}
+.content-input {width: 100%;height: 50px;text-align: left;}
