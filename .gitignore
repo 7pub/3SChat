@@ -1,2 +1,14 @@
-/app/node
-/app/node_modules
+
+app/node/3SChat/node_modules/.bin/ecstatic
+app/node/3SChat/node_modules/.bin/he
+app/node/3SChat/node_modules/charset/.eslintrc
+app/node/3SChat/node_modules/.bin/mime
+app/node/3SChat/node_modules/charset/.npmignore
+app/node_modules/.bin/color-support
+app/node_modules/.bin/handlebars
+app/node_modules/.bin/glob-all
+app/node_modules/.bin/marked
+app/node_modules/.bin/mime
+app/node_modules/.bin/situs
+app/node_modules/.bin/uglifyjs
+app/node_modules/.bin/static

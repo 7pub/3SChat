@@ -1,0 +1,36 @@
+{
+  "name": "chatroom",
+  "version": "0.0.2",
+  "description": "A simple web chatroom",
+  "author": "Li Enze",
+  "dependencies": {
+    "ecstatic": "^4.1.4"
+  },
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": "~4.0"
+  }
+}
+
+{
+  "name": "@jonathan-wilkinson/nodash",
+  "version": "1.0.0",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "typescript": "^3.9.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonathan-wilkinson/nodash.git"
+  },
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com/",
+    "access": "public" // Makes the package public!!!
+  }
+}
