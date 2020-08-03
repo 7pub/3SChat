@@ -8,6 +8,10 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="https://7pub.github.io/cdn-gw/css/jQKeyboard/style.css">
+    <script type="text/javascript" src="https://7pub.github.io/cdn-gw/vendor/jquery/js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="https://7pub.github.io/cdn-gw/js/jQKeyboard/s.js"></script>
+
     <script>
         function loadStyle(directory, files) {
             var head = document.getElementsByTagName("head")[0]
@@ -21,13 +25,12 @@
                 head.appendChild(link)
             }
         }
-        (() => loadStyle('/_site/css/vendor/bs/',  /***/ ['bootstrap-4.0.0.min']))();
-        (() => loadStyle('/_site/css/vendor/nd2/', /***/ ['material', 'waves-0.7.2.min', 'wow-1.1.2.animate', 'nativeDroid2']))();
-        (() => loadStyle('/_site/css/3S/Chat/',    /***/ ['main', 'ticker']))();
-        (() => loadStyle('/_site/css/vendor/fa/',  /***/ ['all']))();
-        (() => loadStyle('/_site/css/3P/Keyboard/',/***/ ['import']))();
-        //https://7pub.github.io/_site/css/3P/Keyboard/import.css
-        (() => loadStyle('/_site/css/vendor/jq/',  /***/ ['jquery-1.4.5.mobile.min']))();
+        (() => loadStyle('https://7pub.github.io/cdn-gw/vendor/bootstrap/css/', /***/ ['bootstrap-4.0.0.min']))();
+        (() => loadStyle('https://7pub.github.io/cdn-gw/vendor/nativedroid2/css/', /***/ ['material', 'waves-0.7.2.min', 'wow-1.1.2.animate', 'nativeDroid2']))();
+        (() => loadStyle('https://7pub.github.io/cdn-gw/css/3SChat/', /***/ ['main', 'ticker']))();
+        (() => loadStyle('https://7pub.github.io/cdn-gw/vendor/font-awesome/css/', /***/ ['all']))();
+        (() => loadStyle('https://7pub.github.io/cdn-gw/css/jqkeyboard_en.bg/', /***/ ['import']))();
+        (() => loadStyle('https://7pub.github.io/cdn-gw/vendor/jquerymobile/css/', /***/ ['jquery-1.4.5.mobile.min']))();
     </script>
     <script type="text/javascript" src="/_site/js/vendor/jq/jquery-3.3.1.min.js"></script>
 </head>
@@ -171,11 +174,11 @@
                                         <label for="MessageBox" class="mdc-floating-label">
                                             <i style="color:goldenrod; font-size: 2.1rem" class="fa fa-share-square mt-4"></i>
                                         </label>
-                                    </div>
-                                    <div class="mdc-notched-outline__trailing"></div>
                                 </div>
-                                <div class="btn-group-vertical"></div>
+                                <div class="mdc-notched-outline__trailing"></div>
                             </div>
+                            <div class="btn-group-vertical"></div>
+                        </div>
 
                         <div class="container mdc-typography main-content">
                             <!--header class="lead">
@@ -227,34 +230,129 @@
         </form>
     </div>
 
-<!-- Vendor Library -->
-    <script type="text/javascript" src="/_site/js/vendor/jq/jquery-1.11.4.ui.min.js"></script>
-    <script type="text/javascript" src="/_site/js/vendor/bs/bootstrap-4.0.0.min.js"></script>
-<!--script type="text/javascript" src="https://raw.githubusercontent.com/7pub/_site/master/js/vendor/jq/jquery-3.3.1.min.js"></script-->
-<!--script type="text/javascript" src="https://raw.githubusercontent.com/7pub/_site/master/js/vendor/jq/jquery-1.11.4.ui.min.js"></script-->
-<!--script type="text/javascript" src="https://raw.githubusercontent.com/7pub/_site/master/js/vendor/bs/bootstrap-4.0.0.min.js"></script-->
-    
-<!--Root-->
-    <script type="text/javascript" src="/_site/js/vendor/nd2/nativeDroid2.js"></script>
-    <script type="text/javascript" src="/_site/js/vendor/nd2/nd2settings.js"></script>
-<!--script type="text/javascript" src="https://raw.githubusercontent.com/7pub/_site/master/js/vendor/nd2/nativeDroid2.js"></script-->
-<!--script type="text/javascript" src="https://raw.githubusercontent.com/7pub/_site/master/js/vendor/nd2/nd2settings.js"></script-->
-    
-<!-- Caliweb -->
-    <script type="text/javascript" src="/_site/js/Caliweb/3SChat/client.js"></script>
-    <script type="text/javascript" src="/_site/js/Caliweb/3SChat/crypto-js-4.0.0.min.js"></script>
+    <!-- Vendor Library -->
+    <script src="https://7pub.github.io/cdn-gw/vendor/jquery/js/jquery-1.11.4.ui.min.js"></script>
+    <script src="https://7pub.github.io/cdn-gw/vendor/bootstrap/js/bootstrap-4.0.0.min.js"></script>
+    <!-- Template Library -->
+    <script src="https://7pub.github.io/cdn-gw/vendor/nativedroid2/js/nativedroid2.js"></script>
+    <script src="https://7pub.github.io/cdn-gw/vendor/nativedroid2/js/nd2settings.js"></script>
+    <script src="https://7pub.github.io/cdn-gw/vendor/nativedroid2/js/waves-0.7.2.min.js"></script>
+    <script src="https://7pub.github.io/cdn-gw/vendor/nativedroid2/js/wow-1.1.2.min.js"></script>
+    <script src="https://7pub.github.io/cdn-gw/vendor/nativedroid2/js/material-components-web.min.js"></script>
+    <!-- Helpers [html5Shiv 373 printshiv]-->
+    <script src="https://7pub.github.io/cdn-gw/vendor/nativedroid2/js//html5Shiv.3.7.3-printshiv.min.js" async></script>
+    <!--Root-->
+    <script src="https://7pub.github.io/cdn-gw/root/routing.js"></script>
+    <!--[Tri33ple] 3SChat-->
+    <script src="https://7pub.github.io/cdn-gw/js/3SChat/client.js"></script>
+    <script src="https://7pub.github.io/cdn-gw/js/3SChat/crypto-js-4.0.0.min.js"></script>
+    <!-- 3Party [consol-log-div]-->
+    <script src="https://7pub.github.io/cdn-gw/js/console.log/es5-shim.js"></script>
+    <script src="https://7pub.github.io/cdn-gw/js/console.log/div.js"></script>
+    <!-- 3Party [jqkeyboard]-->
+    <script src="https://7pub.github.io/cdn-gw/js/jqkeyboard_en.bg/jqkeyboard.js"></script>
+    <script src="https://7pub.github.io/cdn-gw/js/jqkeyboard_en.bg/jqkeyboard-min.js"></script>
+    <script src="https://7pub.github.io/cdn-gw/js/jqkeyboard_en.bg/jqkeyboard-white.js"></script>
+    <script src="https://7pub.github.io/cdn-gw/js/jqkeyboard_en.bg/jqk.layout.en-bg.js"></script>
+    <script src="https://7pub.github.io/cdn-gw/js/jqkeyboard_en.bg/jqk.layout.en.js"></script>
+    <script>
+    </script>
+    <script>
+        function x13(x) {
+            if (x.keyCode == 13) return false;
+        }
 
-    <script type="text/javascript" src="/_site/js/vendor/nd2/material-components-web.min.js"></script>
-    <script type="text/javascript" src="/_site/js/vendor/nd2/waves-0.7.2.min.js"></script>
-    <script type="text/javascript" src="/_site/js/vendor/nd2/wow-1.1.2.min.js"></script>
+        function cleartxtEnc() {
+            document.getElementById('txtEnc').value = "";
+        }
 
-<!-- Helpers [html5Shiv 373 printshiv]-->
-    <script type="text/javascript" src="/_site/js/vendor/helpers/html5Shiv.3.7.3/Printshiv.min.js" async></script>
+        function cleartxtIn() {
+            document.getElementById('txtInput').value = "";
+        }
+    </script>
+    <script>
+        mdc.autoInit();
+        var strategy = "aes";
 
-<!-- 3Party [consol-log-div]-->
-    <script type="text/javascript" src="/_site/js/3P/console.log/es5-shim.js"></script>
-    <script type="text/javascript" src="/_site/js/3P/console.log/div.js"></script>
+        function encrypt(text, password) {
+            switch (strategy) {
+                case "aes":
+                    return CryptoJS.AES.encrypt(text, password);
+                case "des":
+                    return CryptoJS.DES.encrypt(text, password);
+                case "rc4":
+                    return CryptoJS.RC4.encrypt(text, password);
+                case "rc4drop":
+                    return CryptoJS.RC4Drop.encrypt(text, password);
+                case "rabbit":
+                    return CryptoJS.Rabbit.encrypt(text, password);
+                case "rabbitlegacy":
+                    return CryptoJS.RabbitLegacy.encrypt(text, password);
+                case "tripledes":
+                    return CryptoJS.TripleDES.encrypt(text, password);
+            }
+        }
 
+        function decrypt(cipher, password) {
+            switch (strategy) {
+                case "aes":
+                    return CryptoJS.AES.decrypt(cipher, password).toString(
+                        CryptoJS.enc.Utf8
+                    );
+                case "des":
+                    return CryptoJS.DES.decrypt(cipher, password).toString(
+                        CryptoJS.enc.Utf8
+                    );
+                case "rc4":
+                    return CryptoJS.RC4.decrypt(cipher, password).toString(
+                        CryptoJS.enc.Utf8
+                    );
+                case "rc4drop":
+                    return CryptoJS.RC4Drop.decrypt(cipher, password).toString(
+                        CryptoJS.enc.Utf8
+                    );
+                case "rabbit":
+                    return CryptoJS.Rabbit.decrypt(cipher, password).toString(
+                        CryptoJS.enc.Utf8
+                    );
+                case "rabbitlegacy":
+                    return CryptoJS.RabbitLegacy.decrypt(cipher, password).toString(
+                        CryptoJS.enc.Utf8
+                    );
+                case "tripledes":
+                    return CryptoJS.TripleDES.decrypt(cipher, password).toString(
+                        CryptoJS.enc.Utf8
+                    );
+            }
+        }
+        $(".encrypt--strategy").get(0)
+            .MDCSelect.listen("MDCSelect:change", function() {
+                strategy = $(".encrypt--strategy").get(0).MDCSelect.value;
+                $(".encrypt--cipher").get(0).MDCTextField.value = encrypt(
+                    $(".encrypt--text").get(0).MDCTextField.value,
+                    $(".encrypt--password").get(0).MDCTextField.value
+                );
+            });
+        $(".encrypt--text textarea").on("input", function() {
+            $(".encrypt--cipher").get(0).MDCTextField.value = encrypt(
+                $(".encrypt--text").get(0).MDCTextField.value,
+                $(".encrypt--password").get(0).MDCTextField.value
+            );
+        });
+        $(".encrypt--password input").on("input", function() {
+            $(".encrypt--cipher").get(0).MDCTextField.value = encrypt(
+                $(".encrypt--text").get(0).MDCTextField.value,
+                $(".encrypt--password").get(0).MDCTextField.value
+            );
+        });
+        $(".encrypt--cipher textarea").on("input", function() {
+            $(".encrypt--text").get(0).MDCTextField.value = decrypt(
+                $(".encrypt--cipher").get(0).MDCTextField.value,
+                $(".encrypt--password").get(0).MDCTextField.value
+            );
+        });
+    </script>
 
 </body>
+
 </html>
