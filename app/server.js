@@ -2,7 +2,7 @@ var http = require('http'),
     ecstatic = require('ecstatic'),
     Router = require('./router');
 
-var fileServer = ecstatic({ root: '/home/theoreme/nodevenv/ApplicationRoot/' });
+var fileServer = ecstatic({ root: '/home/theoreme/nodevenv/' });
 var router = new Router;
 const port = 8080
 http.createServer((request, response) => {
