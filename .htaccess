@@ -1,0 +1,7 @@
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION BEGIN
+PassengerAppRoot "/home/theoreme/drop.cali.run"
+PassengerBaseURI "/"
+PassengerNodejs "/home/theoreme/nodevenv/drop.cali.run/8/bin/node"
+PassengerAppType node
+PassengerStartupFile server.js
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION END
