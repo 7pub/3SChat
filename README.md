@@ -1,3 +1,7 @@
+<div align="right">
+  <img src="https://img.shields.io/badge/Calirun-Projekte-blue" />
+</div>
+
 ```Stop Font
                    ________  _     ______ _                
                   (_______/ | |   / _____) |          _    
@@ -7,10 +11,10 @@
                   (______(______/ \______)_| |_|\_||_|\___)
 
 ```
+## 3SChat with [3SC] <p align="right">The Matchmaking</p>
 
-## ``Matchmaking``
+### Drei Secure Chat [3SC] ist für die eine Besondere Mitteilung.<br>
 
-Drei Secure Chat [3SC] ist für die eine Besondere Mitteilung. 
 Sie können keine Verbindung zu Ihren vorhandenen Konten wie Google Microsoft iCloud u.a. herstellen. [3SC] verzichtet bewusst auf Hochverfügbarkeit. Die Anwendung wird nicht zentral Bereitgestellt. Es gib keine Anmeldefunktion und keine Authentifizierung.  Erstellen oder für zusätzliche Sicherheit sogar eine Verbindung zu Ihrem eigenen Server herstellen.
 
 ### ``IP Validation``
